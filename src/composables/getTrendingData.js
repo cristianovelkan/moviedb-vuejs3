@@ -1,10 +1,8 @@
 import { ref } from "vue";
 
-const getTrendingData = (mediaType = "all", timeWindow = "week") => {
+const getTrendingData = () => {
   const items = ref([]);
   const error = ref(null);
-
-  const url = `${process.env.VUE_APP_TMDB_ENDPOINT}/trending/${mediaType}/${timeWindow}?api_key=${process.env.VUE_APP_TMDB_APIKEY}`;
 
   const options = {
     method: "GET",
@@ -15,7 +13,8 @@ const getTrendingData = (mediaType = "all", timeWindow = "week") => {
     mode: "cors",
   };
 
-  const load = async () => {
+  const load = async (page = 1, mediaType = "all", timeWindow = "week") => {
+    const url = `${process.env.VUE_APP_TMDB_ENDPOINT}/trending/${mediaType}/${timeWindow}?api_key=${process.env.VUE_APP_TMDB_APIKEY}&page=${page}`;
     try {
       let data = await fetch(url, options);
 
