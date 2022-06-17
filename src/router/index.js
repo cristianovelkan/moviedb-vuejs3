@@ -13,12 +13,6 @@ const routes = [
     redirect: "/trending",
   },
   {
-    path: "/about",
-    name: "about",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
-  },
-  {
     path: "/:catchAll(.*)",
     name: "NotFound",
     component: NotFound,
