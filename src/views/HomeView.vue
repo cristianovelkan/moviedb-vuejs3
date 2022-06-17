@@ -34,10 +34,11 @@
             <single-media
               v-if="item.title || item.name"
               :key="i"
-              :posterPath="item.poster_path"
+              :image="item.poster_path || item.profile_path"
               :title="item.title || item.name"
               :releaseDate="item.release_date || item.first_air_date"
               :voteAverage="item.vote_average"
+              :type="item.media_type"
             />
           </template>
           <v-col cols="12">

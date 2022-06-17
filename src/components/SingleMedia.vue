@@ -4,10 +4,19 @@
       :content="voteAverage"
       :color="voteAverage < 5 ? 'error' : 'success'"
     >
-      <img :src="`${imgUrl}/w500${posterPath}`" height="225" />
+      <img v-if="image" :src="`${imgUrl}/w500${image}`" height="225" />
+      <v-sheet
+        v-else
+        height="225"
+        color="grey"
+        class="d-flex align-center px-8 rounded-lg"
+      >
+        <v-icon color="grey--text">mdi-image-broken-variant</v-icon>
+        <p class="grey--text">No image</p>
+      </v-sheet>
     </v-badge>
     <h5>{{ title }}</h5>
-    <v-chip class="ma-2" color="#032541">
+    <v-chip v-if="type !== 'person'" class="ma-2" color="#032541">
       <v-icon class="mr-2">mdi-calendar</v-icon>
       {{ releaseDate }}
     </v-chip>
@@ -21,8 +30,12 @@ export default {
     title: {
       type: String,
     },
-    posterPath: {
+    image: {
       type: String,
+    },
+    type: {
+      type: String,
+      default: "movie",
     },
     releaseDate: {
       type: String,
